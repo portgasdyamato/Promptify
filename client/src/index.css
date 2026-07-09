@@ -2,35 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root {
-  --bg-base: #050505;
-  --bg-1:    #090909;
-  --bg-2:    #0F0F0F;
-  --bg-3:    #141414;
-  --bg-4:    #1A1A1A;
+  --graphite-950: #060708;
+  --graphite-900: #0A0C0E;
+  --graphite-850: #101216;
+  --graphite-800: #15181D;
+  --graphite-700: #1C2027;
 
-  --glass-xs: rgba(255,255,255,0.035);
-  --glass-sm: rgba(255,255,255,0.055);
-  --glass-md: rgba(255,255,255,0.075);
-  --glass-lg: rgba(255,255,255,0.10);
+  --neon: #00FF99;
+  --neon-dim: rgba(0, 255, 153, 0.12);
+  --neon-soft: #02C373;
 
-  --border:     rgba(255,255,255,0.08);
-  --border-md:  rgba(255,255,255,0.12);
-  --border-lit: rgba(0,255,153,0.3);
+  --label: #FFFFFF;
+  --label-2: rgba(255, 255, 255, 0.76);
+  --label-3: rgba(255, 255, 255, 0.44);
+  --label-4: rgba(255, 255, 255, 0.24);
 
-  --neon:     #00FF99;
-  --neon-dim: rgba(0,255,153,0.15);
+  --border: rgba(255, 255, 255, 0.07);
+  --border-md: rgba(255, 255, 255, 0.12);
+  --border-lit: rgba(0, 255, 153, 0.25);
 
-  --label:   #FFFFFF;
-  --label-2: rgba(255,255,255,0.72);
-  --label-3: rgba(255,255,255,0.44);
-  --label-4: rgba(255,255,255,0.24);
-
-  --shadow-sm: 0 2px 8px  rgba(0,0,0,0.5),  0 1px 2px rgba(0,0,0,0.7);
-  --shadow-md: 0 4px 24px rgba(0,0,0,0.6),  0 2px 8px rgba(0,0,0,0.7);
-  --shadow-lg: 0 8px 48px rgba(0,0,0,0.7),  0 4px 16px rgba(0,0,0,0.8);
+  --shadow-ambient: 0 30px 80px -15px rgba(0, 0, 0, 0.8);
+  --shadow-material: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --shadow-bevel-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 0 rgba(0, 0, 0, 0.4);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,30 +34,46 @@
 body {
   background: transparent;
   color: var(--label);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
 
-::selection { background: rgba(0,255,153,0.22); color: #fff; }
+::selection {
+  background: rgba(0, 255, 153, 0.2);
+  color: #fff;
+}
+
+/* Premium Obsidian Glass Class */
+.promptify-glass {
+  background: rgba(16, 18, 22, 0.5);
+  backdrop-filter: blur(36px) saturate(200%);
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-bevel-inset), var(--shadow-material), var(--shadow-ambient);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.promptify-glass-interactive:hover {
+  background: rgba(28, 32, 39, 0.6);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.14), inset 0 -1px 0 0 rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.6);
+}
 
 /* Drag regions */
-.drag    { -webkit-app-region: drag; }
+.drag { -webkit-app-region: drag; }
 .no-drag { -webkit-app-region: no-drag; }
 
-/* Scrollbar */
+/* Thin elegant scrollbar */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(0,255,153,0.3); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.08); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 255, 153, 0.3); }
 
-/* Animations */
-@keyframes blink    { 0%,100%{opacity:1} 50%{opacity:0.1} }
-@keyframes spin     { from{transform:rotate(0)} to{transform:rotate(360deg)} }
-@keyframes fade-up  { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-@keyframes glow-pulse { 0%,100%{box-shadow:0 0 16px rgba(0,255,153,0.3)} 50%{box-shadow:0 0 48px rgba(0,255,153,0.6), 0 0 96px rgba(0,255,153,0.15)} }
+/* Animation tokens */
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+@keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+@keyframes fade-up { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 
-.anim-blink  { animation: blink 1.6s ease-in-out infinite; }
-.anim-spin   { animation: spin 1.2s linear infinite; }
-.anim-fadeup { animation: fade-up 0.3s ease forwards; }
-.anim-glow   { animation: glow-pulse 2.5s ease-in-out infinite; }
+.anim-blink { animation: blink 1.6s ease-in-out infinite; }
+.anim-spin { animation: spin 1.2s linear infinite; }
+.anim-fadeup { animation: fade-up 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards; }

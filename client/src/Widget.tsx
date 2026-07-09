@@ -14,13 +14,14 @@ function extractJSON(raw: string) {
 type Phase = 'idle' | 'listening' | 'processing' | 'done';
 
 const G = {
-  bg:       'rgba(255,255,255,0.05)',
-  border:   'rgba(255,255,255,0.09)',
-  borderLit:'rgba(0,255,153,0.35)',
-  neon:     '#00FF99',
-  label3:   'rgba(255,255,255,0.44)',
-  label4:   'rgba(255,255,255,0.24)',
-  shadow:   '0 40px 80px rgba(0,0,0,0.7), 0 8px 24px rgba(0,0,0,0.8)',
+  bg:          'rgba(16, 18, 22, 0.45)',
+  border:      'rgba(255, 255, 255, 0.07)',
+  borderLit:   'rgba(0, 255, 153, 0.3)',
+  borderError: 'rgba(255, 95, 87, 0.3)',
+  neon:        '#00FF99',
+  label3:      'rgba(255, 255, 255, 0.44)',
+  label4:      'rgba(255, 255, 255, 0.24)',
+  shadow:      'inset 0 1px 0 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 0 rgba(0, 0, 0, 0.4), 0 30px 80px -15px rgba(0, 0, 0, 0.8)',
 };
 
 export default function Widget() {
@@ -118,8 +119,8 @@ export default function Widget() {
         const t = intent.optimized_text.trim();
         setInput(t); setPhase('done'); say('Done');
         if (electron) {
-          electron.ipcRenderer.invoke('save-history','Voice Command',t).catch(console.error);
-          setTimeout(() => electron.ipcRenderer.send('inject-text',t), 1000);
+          electron.ipcRenderer.invoke('save-history', 'Voice Command', t).catch(console.error);
+          setTimeout(() => electron.ipcRenderer.send('inject-text', t), 1000);
         } else { navigator.clipboard.writeText(t).catch(()=>{}); }
         setTimeout(() => { setPhase('idle'); setStatus(''); setInput(''); }, 4000);
       } else { say('No prompt returned'); }
@@ -129,81 +130,82 @@ export default function Widget() {
   const isLit      = phase === 'listening';
   const isDone     = phase === 'done';
   const isProc     = phase === 'processing';
-  const borderC    = isLit ? G.borderLit : isDone ? 'rgba(0,255,153,0.25)' : G.border;
-  const glowBox    = isLit ? '0 0 0 1.5px rgba(0,255,153,0.14), 0 40px 80px rgba(0,0,0,0.75), 0 0 80px rgba(0,255,153,0.08)' : isDone ? '0 0 0 1px rgba(0,255,153,0.1), 0 40px 80px rgba(0,0,0,0.75)' : G.shadow;
+  const borderC    = isLit ? G.borderLit : isDone ? 'rgba(0,255,153,0.22)' : G.border;
+  const glowBox    = isLit ? 'inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 0 0 1.5px rgba(0,255,153,0.18), 0 35px 80px rgba(0,0,0,0.85), 0 0 40px rgba(0,255,153,0.05)' : isDone ? 'inset 0 1px 0 0 rgba(255,255,255,0.1), 0 0 0 1px rgba(0,255,153,0.1), 0 35px 80px rgba(0,0,0,0.8)' : G.shadow;
+  const statusColor = isLit || isDone ? G.neon : isProc ? '#a78bfa' : G.label4;
 
   return (
-    <div style={{ width:'100vw', height:'100vh', display:'flex', alignItems:'center', justifyContent:'center', padding:16, background:'transparent' }}>
-      <div style={{ width:'100%', maxWidth:560, display:'flex', flexDirection:'column', gap:8 }}>
+    <div style={{ width:'100vw', height:'100vh', display:'flex', alignItems:'center', justifyItems:'center', justifyContent:'center', padding:16, background:'transparent' }}>
+      <div style={{ width:'100%', maxWidth:540, display:'flex', flexDirection:'column', gap:8 }}>
 
-        {/* Main glass panel */}
+        {/* Main widget glass wrapper */}
         <motion.div
-          initial={{ opacity:0, y:8, scale:0.97 }}
+          initial={{ opacity:0, y:8, scale:0.98 }}
           animate={{ opacity:1, y:0, scale:1 }}
-          transition={{ duration:0.3, ease:[0.34,1.56,0.64,1] }}
-          style={{ overflow:'hidden', borderRadius:20, background:'rgba(255,255,255,0.05)', backdropFilter:'blur(48px) saturate(200%)', WebkitBackdropFilter:'blur(48px) saturate(200%)', border:`1px solid ${borderC}`, boxShadow:glowBox, transition:'border-color 0.35s, box-shadow 0.35s' }}
+          transition={{ duration:0.32, ease:[0.16, 1, 0.3, 1] }}
+          style={{ overflow:'hidden', borderRadius:20, background:G.bg, backdropFilter:'blur(36px) saturate(200%)', WebkitBackdropFilter:'blur(36px) saturate(200%)', border:`1px solid ${borderC}`, boxShadow:glowBox, transition:'border-color 0.35s, box-shadow 0.35s' }}
         >
-          {/* Traffic lights bar */}
-          <div style={{ display:'flex', alignItems:'center', gap:10, padding:'11px 14px', borderBottom:'1px solid rgba(255,255,255,0.06)', background:'rgba(255,255,255,0.02)' }}>
+          {/* Windows / macOS header chrome bar */}
+          <div style={{ display:'flex', alignItems:'center', gap:10, padding:'11px 16px', borderBottom:'1px solid rgba(255,255,255,0.05)', background:'rgba(255,255,255,0.015)' }}>
             <div style={{ display:'flex', gap:6 }}>
               {(['#FF5F57','#FFBD2E','#28C840'] as const).map(c=>(
-                <div key={c} style={{ width:11, height:11, borderRadius:'50%', background:c, boxShadow:`0 0 8px ${c}66` }} />
+                <div key={c} style={{ width:10, height:10, borderRadius:'50%', background:c, opacity:0.85 }} />
               ))}
             </div>
             <div style={{ flex:1, textAlign:'center' }}>
-              <span style={{ fontSize:11.5, fontWeight:500, color:'rgba(255,255,255,0.28)', letterSpacing:'0.01em' }}>Promptify</span>
+              <span style={{ fontSize:11, fontWeight:600, color:'rgba(255,255,255,0.24)', letterSpacing:'0.06em', textTransform:'uppercase' }}>Promptify Widget</span>
             </div>
             <div style={{ width:42 }} />
           </div>
 
-          {/* Content row */}
-          <div style={{ display:'flex', alignItems:'center', gap:10, padding:'12px 14px' }}>
-            {/* State icon */}
-            <div style={{ width:40, height:40, borderRadius:12, flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', background: isLit ? 'rgba(0,255,153,0.1)' : 'rgba(255,255,255,0.05)', border:`1px solid ${isLit ? 'rgba(0,255,153,0.3)' : 'rgba(255,255,255,0.08)'}`, boxShadow: isLit ? '0 0 28px rgba(0,255,153,0.3)' : 'none', transition:'all 0.35s' }}>
-              {phase==='idle'       && <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>}
-              {phase==='listening'  && <div className="anim-blink" style={{ width:8, height:8, borderRadius:'50%', background:G.neon, boxShadow:'0 0 16px #00FF99' }} />}
-              {phase==='processing' && <svg className="anim-spin" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round"><circle cx="12" cy="12" r="10" strokeOpacity={0.1}/><path d="M12 2a10 10 0 0 1 10 10"/></svg>}
+          {/* Action Row */}
+          <div style={{ display:'flex', alignItems:'center', gap:11, padding:'12px 14px' }}>
+            {/* Status node */}
+            <div style={{ width:38, height:38, borderRadius:12, flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', background: isLit ? 'rgba(0,255,153,0.07)' : 'rgba(255,255,255,0.04)', border:`1px solid ${isLit ? 'rgba(0,255,153,0.25)' : 'rgba(255,255,255,0.07)'}`, transition:'all 0.3s' }}>
+              {phase==='idle'       && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>}
+              {phase==='listening'  && <div className="anim-blink" style={{ width:7, height:7, borderRadius:'50%', background:G.neon, boxShadow:'0 0 12px #00FF99' }} />}
+              {phase==='processing' && <svg className="anim-spin" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="2.5" strokeLinecap="round"><circle cx="12" cy="12" r="10" strokeOpacity={0.15}/><path d="M12 2a10 10 0 0 1 10 10"/></svg>}
               {phase==='done'       && (
                 <motion.svg initial={{scale:0}} animate={{scale:1}} transition={{type:'spring',stiffness:400}}
-                  width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={G.neon} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={G.neon} strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="20 6 9 17 4 12"/>
                 </motion.svg>
               )}
             </div>
 
-            {/* Input */}
+            {/* Input fields */}
             <div style={{ flex:1, minWidth:0 }}>
-              <p style={{ fontSize:10, fontWeight:700, letterSpacing:'0.07em', textTransform:'uppercase', lineHeight:1, marginBottom:3, color: isLit||isDone ? G.neon : isProc ? '#fff' : G.label4 }}>
+              <p style={{ fontSize:9.5, fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', lineHeight:1, marginBottom:3, color: statusColor }}>
                 {phase==='idle' ? 'Ready' : phase==='listening' ? 'Listening…' : phase==='processing' ? (status||'Processing…') : 'Injected ✓'}
               </p>
               <input ref={inputRef} value={input} onChange={e=>setInput(e.target.value)}
-                placeholder={phase==='idle' ? 'Press mic and speak your request…' : phase==='listening' ? 'Say your request now…' : ''}
+                placeholder={phase==='idle' ? 'Hold hotkey and speak your thoughts…' : phase==='listening' ? 'Dictating prompt…' : ''}
                 disabled={isProc||isDone}
                 className="no-drag"
-                style={{ width:'100%', background:'transparent', border:'none', outline:'none', fontSize:13.5, color:'rgba(255,255,255,0.72)', fontFamily:'Inter, system-ui, sans-serif', caretColor:G.neon }}
+                style={{ width:'100%', background:'transparent', border:'none', outline:'none', fontSize:13.5, color:'rgba(255,255,255,0.76)', fontFamily:'Inter, system-ui, sans-serif', caretColor:G.neon }}
               />
             </div>
 
-            {/* Mic button */}
+            {/* Mic control */}
             <motion.button whileTap={{scale:0.88}} onClick={()=>{if(isLit)stopListening(); else if(phase==='idle')startListening();}}
               disabled={isProc||isDone} className="no-drag"
-              style={{ width:38, height:38, borderRadius:11, border:'none', cursor:'pointer', flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', background: isLit ? 'rgba(0,255,153,0.12)' : 'rgba(255,255,255,0.05)', boxShadow: isLit ? '0 0 28px rgba(0,255,153,0.4)' : 'none', transition:'all 0.3s', opacity:isProc||isDone ? 0.4 : 1 }}>
+              style={{ width:36, height:36, borderRadius:11, border:'none', cursor:'pointer', flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', background: isLit ? 'rgba(0,255,153,0.1)' : 'rgba(255,255,255,0.04)', transition:'all 0.25s', opacity:isProc||isDone ? 0.35 : 1 }}>
               {isLit
-                ? <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill={G.neon}/><rect x="14" y="4" width="4" height="16" rx="1" fill={G.neon}/></svg>
-                : <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+                ? <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" fill={G.neon}/><rect x="14" y="4" width="4" height="16" rx="1" fill={G.neon}/></svg>
+                : <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
               }
             </motion.button>
 
-            {/* Close */}
+            {/* Remove widget */}
             <motion.button whileTap={{scale:0.88}} onClick={()=>electron?.ipcRenderer.send('hide-widget')}
               className="no-drag" title="Remove widget"
-              style={{ width:30, height:30, borderRadius:8, border:'none', cursor:'pointer', flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', background:'rgba(255,255,255,0.04)' }}>
-              <svg width="9" height="9" viewBox="0 0 9 9" fill="none" stroke="rgba(255,255,255,0.28)" strokeWidth="1.5" strokeLinecap="round"><path d="M1 1L8 8M8 1L1 8"/></svg>
+              style={{ width:28, height:28, borderRadius:8, border:'none', cursor:'pointer', flexShrink:0, display:'flex', alignItems:'center', justifyContent:'center', background:'rgba(255,255,255,0.035)' }}>
+              <svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="rgba(255,255,255,0.24)" strokeWidth="1.5" strokeLinecap="round"><path d="M1 1L7 7M7 1L1 7"/></svg>
             </motion.button>
           </div>
         </motion.div>
 
-        {/* Processing status */}
+        {/* AI feedback indicator status */}
         <AnimatePresence mode="wait">
           {status && isProc && (
             <motion.p key={status} initial={{opacity:0,y:-4}} animate={{opacity:1,y:0}} exit={{opacity:0}}
