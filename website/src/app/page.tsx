@@ -332,7 +332,7 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-5">
             <FeatureCard
-              icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#39ff89" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" w="20" h="14" rx="2" /><path d="M8 21h8M12 17v4" /></svg>}
+              icon={<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#39ff89" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /></svg>}
               title="Persistent Floating Widget"
               desc="The widget lives on your screen at all times. Close the app window — it stays. It only leaves when you dismiss it."
             />
