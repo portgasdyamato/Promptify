@@ -105,10 +105,14 @@
       <!-- Hero Right: Interactive Desktop Widget -->
       <div class="hero-widget-wrapper">
         <div class="widget-depth-shadow"></div>
-        <div class="desktop-widget">
+        <div class="desktop-widget" id="preview-widget">
           <!-- Widget Window Header -->
           <div class="widget-header">
-            <TrafficLights />
+            <div class="flex gap-1.5 items-center">
+              <div class="w-2.5 h-2.5 rounded-full bg-[#FF5F57] opacity-80"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] opacity-80"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-[#28C840] opacity-80"></div>
+            </div>
             <div class="widget-title">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
@@ -125,27 +129,27 @@
 
           <!-- Widget Main Panel -->
           <div class="widget-body">
-            <div class="wave-outer-ring">
+            <div class="wave-outer-ring" id="widget-outer-ring">
               <div class="wave-inner-ring">
-                <div class="mic-button">
-                  <i data-lucide="mic"></i>
+                <div class="mic-button" id="widget-mic-btn">
+                  <i data-lucide="mic" id="widget-mic-icon"></i>
                 </div>
               </div>
               <!-- Floating Animated Wave Lines -->
-              <div class="wave-line wave-line-1"></div>
-              <div class="wave-line wave-line-2"></div>
+              <div class="wave-line wave-line-1" id="wave-1"></div>
+              <div class="wave-line wave-line-2" id="wave-2"></div>
             </div>
 
             <!-- Listening Status -->
             <div class="status-container">
-              <h3 class="status-heading">Listening...</h3>
-              <p class="status-subtext">Hold hotkey and speak your thoughts</p>
+              <h3 class="status-heading" id="widget-status-text">Ready to Dictate</h3>
+              <p class="status-subtext" id="widget-sub-text">Press microphone or shortcut to speak</p>
             </div>
 
             <!-- Ready Badge -->
-            <div class="ready-badge">
+            <div class="ready-badge" id="widget-ready-badge">
               <span class="ready-dot"></span>
-              <span>READY</span>
+              <span id="widget-badge-label">READY</span>
             </div>
           </div>
 
@@ -209,12 +213,12 @@
   <!-- Features Section -->
   <section id="features" class="features-section">
     <div class="section-header">
-      <p class="section-tag font-mono">BUILT FOR FOCUS</p>
+      <p class="section-tag">BUILT FOR FOCUS</p>
       <h2 class="section-title">Powerful by design.<br>Invisible by default.</h2>
       <p class="section-subtitle">Promptify integrates into your workflow so effortlessly, you'll forget it's even there—until you need it.</p>
     </div>
 
-    <!-- Cards Asymmetric Layout / Perfect Grid -->
+    <!-- Cards Grid -->
     <div class="features-grid">
       
       <!-- Card 1 -->
@@ -323,9 +327,7 @@
     <p>© 2026 Promptify. All rights reserved.</p>
   </footer>
 
-  <script>
-    // Initialize Lucide Icons
-    lucide.createIcons();
-  </script>
+  <!-- Script for Animations/Interactions -->
+  <script src="script.js"></script>
 </body>
 </html>
