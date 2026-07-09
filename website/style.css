@@ -324,26 +324,43 @@ body {
 
 .widget-depth-shadow {
   position: absolute;
-  bottom: -40px;
-  left: 5%;
-  right: 5%;
+  bottom: -60px;
+  left: 10%;
+  right: 10%;
   height: 100px;
   background: var(--accent-emerald);
-  filter: blur(50px);
-  opacity: 0.5;
+  filter: blur(60px);
+  opacity: 0.3;
   border-radius: 50%;
   pointer-events: none;
 }
 
+.widget-back-flare {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  width: 60%;
+  height: 60%;
+  background: linear-gradient(180deg, rgba(0, 255, 153, 0.25) 0%, transparent 100%);
+  filter: blur(40px);
+  transform: rotate(-15deg);
+  pointer-events: none;
+  border-radius: 50%;
+}
+
 .desktop-widget {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.005) 100%);
-  backdrop-filter: blur(40px) saturate(150%);
-  -webkit-backdrop-filter: blur(40px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  backdrop-filter: blur(30px) saturate(120%);
+  -webkit-backdrop-filter: blur(30px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-top: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 20px;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 255, 153, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.15), inset 0 -2px 0 0 rgba(0, 255, 153, 0.4);
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8), 
+              0 0 60px rgba(0, 255, 153, 0.1), 
+              inset 0 1px 2px rgba(255, 255, 255, 0.2), 
+              inset 0 -2px 4px rgba(0, 255, 153, 0.3);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -351,23 +368,21 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  border-radius: inherit;
-  border: 1px solid transparent;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, transparent 40%) border-box;
-  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
   pointer-events: none;
+  border-radius: inherit;
+  z-index: 0;
 }
 
 .widget-header {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 18px;
+  padding: 16px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  background: rgba(255, 255, 255, 0.01);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .widget-title {
@@ -398,11 +413,15 @@ body {
 }
 
 .widget-body {
-  padding: 32px 24px;
+  position: relative;
+  z-index: 1;
+  padding: 48px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  background: rgba(0, 0, 0, 0.45);
+  box-shadow: inset 0 2px 20px rgba(0, 0, 0, 0.6);
 }
 
 .wave-outer-ring {
@@ -506,12 +525,14 @@ body {
 }
 
 .widget-footer {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 18px;
+  padding: 16px 20px;
   border-top: 1px solid rgba(255, 255, 255, 0.04);
-  background: rgba(255, 255, 255, 0.015);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .footer-icons {
@@ -738,7 +759,6 @@ body {
   object-fit: contain;
   z-index: 1;
   pointer-events: none;
-  mix-blend-mode: screen;
 }
 
 .asset-float {
