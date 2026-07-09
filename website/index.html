@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promptify — Speak your ideas. Get formatted prompts.</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Cinematic Background Backlight & Ambient Glows -->
+  <div class="cinematic-backdrop">
+    <div class="spotlight"></div>
+    <div class="ambient-glow glow-left"></div>
+    <div class="ambient-glow glow-right"></div>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="header">
+    <div class="header-container">
+      <!-- Logo -->
+      <a href="#" class="logo">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#00FF99"/>
+        </svg>
+        <span class="logo-text">Promptify</span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#integrations">Integrations</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#docs">Docs</a>
+      </nav>
+
+      <!-- CTA -->
+      <a href="https://github.com/portgasdyamato/Promptify/releases/latest" target="_blank" rel="noopener noreferrer" class="btn-download-widget">
+        <span>Download Widget</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="hero-section">
+    <div class="hero-container">
+      
+      <!-- Hero Left: Content -->
+      <div class="hero-content">
+        <!-- Subtag -->
+        <div class="subtag">
+          <span class="subtag-dot"></span>
+          <span>DESKTOP AI ASSISTANT, REIMAGINED</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="headline">
+          Voice to prompt.<br>
+          <span class="highlight">Without friction.</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="subtitle">
+          Promptify lives on your desktop. Speak, capture, and transform your thoughts into powerful AI prompts—instantly and seamlessly.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="cta-buttons">
+          <a href="https://github.com/portgasdyamato/Promptify/releases/latest" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+              <path d="M0 0h11.233v11.233H0V0zm12.767 0H24v11.233H12.767V0zM0 12.767h11.233V24H0V12.767zm12.767 0H24V24H12.767V12.767z"/>
+            </svg>
+            <span>Download for Windows</span>
+          </a>
+          <a href="https://github.com/portgasdyamato/Promptify" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+            <span>View on GitHub</span>
+          </a>
+        </div>
+
+        <!-- Trustline -->
+        <div class="trustline">
+          <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="#00FF99" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          <span>Free to use • No credit card required</span>
+        </div>
+      </div>
+
+      <!-- Hero Right: Interactive Desktop Widget -->
+      <div class="hero-widget-wrapper">
+        <div class="widget-depth-shadow"></div>
+        <div class="desktop-widget">
+          <!-- Widget Window Header -->
+          <div class="widget-header">
+            <TrafficLights />
+            <div class="widget-title">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+              </svg>
+              <span>Promptify</span>
+            </div>
+            <div class="widget-header-actions">
+              <i data-lucide="sparkles"></i>
+              <i data-lucide="settings"></i>
+              <i data-lucide="minus"></i>
+              <i data-lucide="x"></i>
+            </div>
+          </div>
+
+          <!-- Widget Main Panel -->
+          <div class="widget-body">
+            <div class="wave-outer-ring">
+              <div class="wave-inner-ring">
+                <div class="mic-button">
+                  <i data-lucide="mic"></i>
+                </div>
+              </div>
+              <!-- Floating Animated Wave Lines -->
+              <div class="wave-line wave-line-1"></div>
+              <div class="wave-line wave-line-2"></div>
+            </div>
+
+            <!-- Listening Status -->
+            <div class="status-container">
+              <h3 class="status-heading">Listening...</h3>
+              <p class="status-subtext">Hold hotkey and speak your thoughts</p>
+            </div>
+
+            <!-- Ready Badge -->
+            <div class="ready-badge">
+              <span class="ready-dot"></span>
+              <span>READY</span>
+            </div>
+          </div>
+
+          <!-- Widget Bottom Bar -->
+          <div class="widget-footer">
+            <div class="footer-icons">
+              <button class="footer-btn"><i data-lucide="keyboard"></i></button>
+              <button class="footer-btn"><i data-lucide="star"></i></button>
+              <button class="footer-btn"><i data-lucide="clock"></i></button>
+            </div>
+            <button class="action-submit">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 10 4 15 9 20"/>
+                <path d="M20 4v7a4 4 0 0 1-4 4H4"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Statistics Panel -->
+  <section class="stats-section">
+    <div class="stats-capsule">
+      <div class="stat-item">
+        <div class="stat-icon-box"><i data-lucide="zap"></i></div>
+        <div class="stat-text">
+          <p class="stat-value">&lt; 2s</p>
+          <p class="stat-label">Prompt Generation</p>
+        </div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-icon-box"><i data-lucide="target"></i></div>
+        <div class="stat-text">
+          <p class="stat-value">99%</p>
+          <p class="stat-label">Voice Accuracy</p>
+        </div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-icon-box"><i data-lucide="keyboard"></i></div>
+        <div class="stat-text">
+          <p class="stat-value">Any</p>
+          <p class="stat-label">Active Window Input</p>
+        </div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-icon-box"><i data-lucide="shield"></i></div>
+        <div class="stat-text">
+          <p class="stat-value">Zero</p>
+          <p class="stat-label">Flow Disruption</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="features-section">
+    <div class="section-header">
+      <p class="section-tag font-mono">BUILT FOR FOCUS</p>
+      <h2 class="section-title">Powerful by design.<br>Invisible by default.</h2>
+      <p class="section-subtitle">Promptify integrates into your workflow so effortlessly, you'll forget it's even there—until you need it.</p>
+    </div>
+
+    <!-- Cards Asymmetric Layout / Perfect Grid -->
+    <div class="features-grid">
+      
+      <!-- Card 1 -->
+      <div class="feature-card">
+        <div class="card-header">
+          <div class="card-icon-box"><i data-lucide="monitor"></i></div>
+          <span class="card-number">01</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Always-On Widget</h3>
+          <p class="card-desc">Sits elegantly on top of all windows. Close the main app, the widget stays quietly in the background.</p>
+        </div>
+        <div class="card-footer">
+          <div class="arrow-circle">
+            <i data-lucide="arrow-right"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="feature-card">
+        <div class="card-header">
+          <div class="card-icon-box"><i data-lucide="terminal"></i></div>
+          <span class="card-number">02</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Global Shortcut</h3>
+          <p class="card-desc">Press Ctrl + Shift + V anywhere. Instantly activate Promptify without breaking your flow.</p>
+        </div>
+        <div class="card-footer">
+          <div class="arrow-circle">
+            <i data-lucide="arrow-right"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="feature-card">
+        <div class="card-header">
+          <div class="card-icon-box"><i data-lucide="zap"></i></div>
+          <span class="card-number">03</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Active Text Injection</h3>
+          <p class="card-desc">Paste AI-generated prompts directly into any field—you stay in the zone.</p>
+        </div>
+        <div class="card-footer">
+          <div class="arrow-circle">
+            <i data-lucide="arrow-right"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="feature-card">
+        <div class="card-header">
+          <div class="card-icon-box"><i data-lucide="database"></i></div>
+          <span class="card-number">04</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Local & Private</h3>
+          <p class="card-desc">Your data stays on your device. No tracking. No cloud. Just speed and security.</p>
+        </div>
+        <div class="card-footer">
+          <div class="arrow-circle">
+            <i data-lucide="arrow-right"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Specs Bottom Bar -->
+  <section class="specs-section">
+    <div class="specs-container">
+      <p class="specs-tagline">TRUSTED. PRIVATE. COMPATIBLE.</p>
+      <div class="specs-row">
+        <div class="spec-item">
+          <svg class="spec-icon" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+            <path d="M0 0h11.233v11.233H0V0zm12.767 0H24v11.233H12.767V0zM0 12.767h11.233V24H0V12.767zm12.767 0H24V24H12.767V12.767z"/>
+          </svg>
+          <span>Windows 10+</span>
+        </div>
+        <div class="spec-separator"></div>
+        <div class="spec-item">
+          <i data-lucide="wifi-off" class="spec-icon-lucide"></i>
+          <span>Works Offline</span>
+        </div>
+        <div class="spec-separator"></div>
+        <div class="spec-item">
+          <i data-lucide="shield" class="spec-icon-lucide"></i>
+          <span>Privacy First</span>
+        </div>
+        <div class="spec-separator"></div>
+        <div class="spec-item">
+          <i data-lucide="leaf" class="spec-icon-lucide"></i>
+          <span>Lightweight</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 Promptify. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>
