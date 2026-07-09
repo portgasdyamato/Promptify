@@ -2,45 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-
-    --radius: 0.75rem;
-  }
+:root {
+  --neon: #39ff89;
+  --neon-dim: #00cc66;
+  --neon-glow: rgba(57, 255, 137, 0.4);
+  --bg: #030804;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-transparent text-foreground;
-  }
+* { box-sizing: border-box; }
+
+body {
+  background: transparent;
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+
+::selection {
+  background: rgba(57, 255, 137, 0.25);
+}
+
+/* Glass */
+.glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(57, 255, 137, 0.12);
+}
+
+/* Neon text */
+.neon-text {
+  color: var(--neon);
+  text-shadow: 0 0 20px rgba(57,255,137,0.5);
+}
+
+/* Animations */
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 16px rgba(57,255,137,0.3); }
+  50% { box-shadow: 0 0 40px rgba(57,255,137,0.6), 0 0 80px rgba(57,255,137,0.2); }
+}
+@keyframes blink-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.pulse-ring { animation: pulse-ring 2.5s ease-in-out infinite; }
+.blink-dot { animation: blink-dot 1.4s ease-in-out infinite; }
+.spin-slow { animation: spin-slow 1.5s linear infinite; }
+
+/* Drag regions for electron */
+.drag-region { -webkit-app-region: drag; }
+.no-drag { -webkit-app-region: no-drag; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(57,255,137,0.3); border-radius: 4px; }
