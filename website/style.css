@@ -300,7 +300,6 @@ body {
   top: 150px;
   right: -50px;
   width: 150px;
-  opacity: 0.6;
 }
 
 .center-asset-container {
@@ -315,7 +314,6 @@ body {
 .asset-cube {
   position: relative;
   width: 400px;
-  filter: drop-shadow(0 0 50px rgba(0, 255, 168, 0.5));
 }
 
 .right-asset-container {
@@ -326,8 +324,6 @@ body {
 }
 .asset-flower {
   width: 300px;
-  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
-  opacity: 0.8;
 }
 
 /* --- FLOATING TECH TEXT --- */
@@ -559,7 +555,6 @@ body {
 }
 .asset-crystal {
   width: 400px;
-  filter: drop-shadow(0 0 40px rgba(0, 255, 168, 0.4));
 }
 .crystal-caption {
   position: absolute;
