@@ -39,4 +39,4 @@ async function processImage(filename) {
     }
 }
 
-['public/new_asset1.png', 'public/new_asset2.png'].forEach(processImage);
+['public/new_asset1.png', 'public/new_asset2.png', 'public/new_asset3.png'].forEach(processImage);
