@@ -126,4 +126,3 @@ vite.config.ts.*
 
 # Misc
 .env.example
-vercel.json
