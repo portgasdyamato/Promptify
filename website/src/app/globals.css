@@ -2,48 +2,30 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   THE PROMPTIFY SPECIFICATION: OBSIDIAN GLASS & CHARCOAL DESIGN LANGUAGE
+   THE PROMPTIFY OBSIDIAN GLASS SPECIFICATION (PROMPTIFY DNA)
 ═══════════════════════════════════════════════════════════════ */
 :root {
-  /* Layered Charcoal/Graphite Base */
-  --graphite-950: #060708;
-  --graphite-900: #0A0C0E;
-  --graphite-850: #101216;
-  --graphite-800: #15181D;
-  --graphite-700: #1C2027;
+  /* Cinematic Dark Materials */
+  --obsidian-dark:   #040506;
+  --obsidian-panel:  rgba(10, 11, 13, 0.42);
+  --obsidian-bevel:  rgba(255, 255, 255, 0.045);
+  --obsidian-border: rgba(255, 255, 255, 0.065);
   
-  /* Promptify Emerald — A rare, high-luxe glowing green accent */
-  --emerald-glowing: #00FF99;
-  --emerald-understated: #02C373;
-  --emerald-dim: rgba(0, 255, 153, 0.08);
-  --emerald-glow-color: rgba(0, 255, 153, 0.35);
+  /* Signature Emerald Token - Highly Restricted */
+  --emerald-fingerprint: #00FF99;
+  --emerald-soft:        #02C373;
+  --emerald-dim:         rgba(0, 255, 153, 0.06);
+  --emerald-glow:        0 0 25px rgba(0, 255, 153, 0.25);
 
-  /* Light and Material Transparency */
-  --translucent-white-3: rgba(255, 255, 255, 0.03);
-  --translucent-white-7: rgba(255, 255, 255, 0.07);
-  --translucent-white-12: rgba(255, 255, 255, 0.12);
-  --translucent-white-20: rgba(255, 255, 255, 0.20);
-  
-  /* Physical Bevel & Edge Highlights */
-  --edge-highlight: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 50%, rgba(0, 255, 153, 0.02) 100%);
-  --edge-highlight-hover: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.02) 50%, rgba(0, 255, 153, 0.1) 100%);
-  --glass-separator: rgba(255, 255, 255, 0.06);
-
-  /* Typography Colors */
-  --text-primary: #FFFFFF;
-  --text-secondary: rgba(255, 255, 255, 0.76);
-  --text-muted: rgba(255, 255, 255, 0.44);
-  --text-inactive: rgba(255, 255, 255, 0.24);
-
-  /* Shadow Depth System */
-  --shadow-ambient: 0 40px 100px -20px rgba(0, 0, 0, 0.8);
-  --shadow-material: 0 4px 30px rgba(0, 0, 0, 0.4);
-  --shadow-bevel-inset: inset 0 1px 0 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 0 rgba(0, 0, 0, 0.4);
-  --shadow-bevel-inset-hover: inset 0 1px 0 0 rgba(255, 255, 255, 0.14), inset 0 -1px 0 0 rgba(0, 0, 0, 0.3);
+  /* Optical Glass Light Refraction & Internal Shadows */
+  --shadow-ambient: 0 50px 100px -30px rgba(0, 0, 0, 0.95);
+  --shadow-material: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --shadow-inset-top: inset 0 1px 0 0 rgba(255, 255, 255, 0.07);
+  --shadow-inset-bottom: inset 0 -1px 0 0 rgba(0, 0, 0, 0.6);
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   MATERIAL IMPLEMENTATIONS
+   BASE ELEMENTS
 ═══════════════════════════════════════════════════════════════ */
 * {
   box-sizing: border-box;
@@ -54,149 +36,151 @@
 }
 
 body {
-  background: var(--graphite-950);
-  color: var(--text-primary);
+  background: var(--obsidian-dark);
+  color: #ffffff;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
-/* Environmental Backlight Glow */
-.backlight-canvas {
+/* ═══════════════════════════════════════════════════════════════
+   CINEMATIC ENVIRONMENT (NO VISIBLE GRID)
+═══════════════════════════════════════════════════════════════ */
+.cinematic-backdrop {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  background: radial-gradient(circle at 50% 0%, #0d0f12 0%, #040506 80%);
 }
 
-.backlight-spotlight {
+/* Soft ambient backing light - almost invisible */
+.ambient-hardware-glow {
   position: absolute;
-  top: -15%;
+  top: -10%;
   left: 50%;
   transform: translateX(-50%);
-  width: 90vw;
-  height: 60vh;
+  width: 75vw;
+  height: 50vh;
   border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.012) 0%, rgba(0, 255, 153, 0.018) 35%, transparent 75%);
-  filter: blur(100px);
-}
-
-/* Refined grid structure, very quiet, low contrast */
-.graphite-grid {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.007) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.007) 1px, transparent 1px);
-  background-size: 80px 80px;
-}
-
-/* Premium Frosted Glass Structure */
-.promptify-glass {
-  background: rgba(16, 18, 22, 0.45);
-  backdrop-filter: blur(28px) saturate(210%);
-  -webkit-backdrop-filter: blur(28px) saturate(210%);
-  border: 1px solid var(--translucent-white-7);
-  box-shadow: var(--shadow-bevel-inset), var(--shadow-material), var(--shadow-ambient);
-  border-radius: 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Internal glass reflection sheen */
-.promptify-glass::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.015) 0%, transparent 60%);
+  background: radial-gradient(ellipse at center, rgba(255,255,255,0.008) 0%, rgba(0, 255, 153, 0.012) 40%, transparent 80%);
+  filter: blur(140px);
   pointer-events: none;
 }
 
-/* Premium micro-elevations on hover */
-.promptify-glass-interactive {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+/* ═══════════════════════════════════════════════════════════════
+   PREMIUM HANDCRAFTED MATERIALS
+═══════════════════════════════════════════════════════════════ */
+
+/* Material Realism Obsidian Glass */
+.obsidian-glass {
+  background: var(--obsidian-panel);
+  backdrop-filter: blur(36px) saturate(210%);
+  -webkit-backdrop-filter: blur(36px) saturate(210%);
+  border: 1px solid var(--obsidian-border);
+  box-shadow: 
+    var(--shadow-inset-top), 
+    var(--shadow-inset-bottom), 
+    var(--shadow-material), 
+    var(--shadow-ambient);
+  border-radius: 24px;
+  position: relative;
 }
 
-.promptify-glass-interactive:hover {
-  background: rgba(28, 32, 39, 0.55);
+/* High-fidelity bezel overlay */
+.obsidian-glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, rgba(255,255,255,0.045) 0%, transparent 60%, rgba(0,255,153,0.01) 100%) border-box;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Fluid microinteraction shifts */
+.obsidian-glass-interactive {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.obsidian-glass-interactive:hover {
+  background: rgba(16, 18, 22, 0.65);
   border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: var(--shadow-bevel-inset-hover), 0 12px 40px rgba(0,0,0,0.6), 0 0 20px rgba(0,255,153,0.02);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.3),
+    0 20px 60px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(0, 255, 153, 0.02);
   transform: translateY(-2px);
 }
 
-/* Signature Active States - highly constrained */
-.signature-active-indicator {
-  position: relative;
-}
-.signature-active-indicator::after {
+/* Fingerprint active cues */
+.fingerprint-active::before {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: var(--emerald-glowing);
-  box-shadow: 0 0 12px var(--emerald-glowing);
+  background: var(--emerald-fingerprint);
+  box-shadow: var(--emerald-glow);
 }
 
-/* Emerald Primary CTA Button */
-.cta-emerald {
+/* Precise Button */
+.btn-fingerprint {
   background: linear-gradient(180deg, #00FF99 0%, #02C373 100%);
-  color: #030405;
-  border: 1px solid rgba(0, 255, 153, 0.25);
+  color: #040506;
   border-radius: 100px;
   font-weight: 600;
   letter-spacing: -0.02em;
-  box-shadow: 0 8px 30px rgba(0, 255, 153, 0.15), inset 0 1px 0 0 rgba(255, 255, 255, 0.35);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 30px rgba(0, 255, 153, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.35);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border: none;
 }
 
-.cta-emerald:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(0, 255, 153, 0.3), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+.btn-fingerprint:hover {
+  transform: translateY(-2.5px);
+  box-shadow: 0 16px 40px rgba(0, 255, 153, 0.28), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
 }
 
-.cta-emerald:active {
-  transform: translateY(0);
+.btn-fingerprint:active {
+  transform: translateY(-1px);
 }
 
-/* Clean Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 255, 153, 0.4);
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATIONS & MOTION SIGNATURES
+═══════════════════════════════════════════════════════════════ */
+@keyframes pulse-fingerprint {
+  0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 6px rgba(0, 255, 153, 0.25)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 18px rgba(0, 255, 153, 0.6)); }
 }
 
-/* Elegant Apple-Like Animation Specs */
-@keyframes fluid-glow {
-  0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 8px rgba(0, 255, 153, 0.3)); }
-  50% { opacity: 1; filter: drop-shadow(0 0 20px rgba(0, 255, 153, 0.7)); }
+@keyframes spin-quiet {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-@keyframes slow-ambient {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-8px) scale(1.02); }
+@keyframes slow-hardware-drift {
+  0%, 100% { transform: translate(-50%, 0px); }
+  50% { transform: translate(-50%, -10px) scale(1.02); }
 }
 
-.glow-cycle {
-  animation: fluid-glow 2.5s ease-in-out infinite;
+.pulse-fingerprint {
+  animation: pulse-fingerprint 2.8s ease-in-out infinite;
 }
 
-.ambient-cycle {
-  animation: slow-ambient 8s ease-in-out infinite;
+.spin-quiet {
+  animation: spin-quiet 1.5s linear infinite;
+}
+
+.drift-quiet {
+  animation: slow-hardware-drift 10s ease-in-out infinite;
 }
